@@ -1,0 +1,6 @@
+[package]
+name = "texture_issue"
+version = "0.1.0"
+authors = ["Ben Konz <bkonz@unomaha.edu>"]
+
+[dependencies]
