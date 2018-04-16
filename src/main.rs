@@ -118,12 +118,9 @@ fn main() {
     context.tex_parameteri(gl::TEXTURE_2D, gl::TEXTURE_MAG_FILTER, gl::NEAREST as i32);
 
     // initialize pixels to be an array of zeros, this should create a black texture
-    let pixels = [0; 144 * 160 * 4];
+    let pixels = [0u8; 144 * 160 * 4];
 
     context.bind_texture(gl::TEXTURE_2D, Some(&texture));
-
-    // convert pixels into an array buffer of bytes
-    let pixels = TypedArray::<u8>::from(&pixels[..]).buffer();
 
     // load the data onto our texture object
     context.tex_image2_d(
@@ -135,7 +132,7 @@ fn main() {
         0,
         gl::RGBA,
         gl::UNSIGNED_BYTE,
-        Some(&pixels),
+        Some(pixels.as_ref()),
     );
 
     context.generate_mipmap(gl::TEXTURE_2D);
